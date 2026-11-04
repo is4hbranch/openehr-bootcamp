@@ -4,8 +4,9 @@ Everything here is yours alone: your own EHRbase server, database and form.
 
 ## When you open this page
 
-1. Wait for the terminal at the bottom to say **"EHRbase is ready"** (1–2 minutes the first time).
-2. Your form opens in the **My form** preview tab. If it doesn't, open the **Ports** tab
+1. A terminal tab called **Start my workspace** opens at the bottom. Wait for it to say
+   **"EHRbase is ready"** (1–2 minutes the first time). Keep that tab open while you work.
+2. Your form then opens in the **My form** preview tab. If it doesn't, open the **Ports** tab
    (bottom panel) and click the globe icon next to **My form**.
 
 ## Editing the form
@@ -31,7 +32,7 @@ Unsaved work can be lost if the workspace is deleted after a long period of inac
 
 | Problem | Task |
 |---|---|
-| Form preview is blank or stuck | **Restart my form** |
+| Form preview is blank or stuck | **Start my workspace** |
 | Form says EHRbase isn't reachable | **Restart EHRbase** |
 | Want a clean, empty EHRbase | **Reset EHRbase data** |
 | Everything is broken | `Ctrl+Shift+P` → **Codespaces: Rebuild Container** |

@@ -1,7 +1,8 @@
 # Everything runs inside the participant's own Codespace VM - nothing is shared.
 services:
   workspace:
-    image: mcr.microsoft.com/devcontainers/javascript-node:22
+    # Pinned to Debian bookworm: the Docker add-on doesn't install cleanly on newer bases.
+    image: mcr.microsoft.com/devcontainers/javascript-node:22-bookworm
     volumes:
       - ../..:/workspaces:cached
     command: sleep infinity

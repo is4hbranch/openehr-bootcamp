@@ -2,15 +2,18 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Save my work",
+      "label": "Start my workspace",
       "type": "shell",
-      "command": "git add -A && (git commit -m \"Work saved $(date '+%Y-%m-%d %H:%M')\" || true) && git push",
+      "command": "bash .devcontainer/start.sh",
+      "isBackground": true,
+      "runOptions": { "runOn": "folderOpen" },
+      "presentation": { "reveal": "always", "panel": "dedicated", "focus": false },
       "problemMatcher": []
     },
     {
-      "label": "Restart my form",
+      "label": "Save my work",
       "type": "shell",
-      "command": "pkill -f vite || true; nohup npm run dev > /tmp/form.log 2>&1 & sleep 3; tail -n 5 /tmp/form.log",
+      "command": "git add -A && (git commit -m \"Work saved $(date '+%Y-%m-%d %H:%M')\" || true) && git push",
       "problemMatcher": []
     },
     {

@@ -10,7 +10,7 @@
 
   "features": {
     // Lets the "Reset EHRbase" task restart the database from inside the editor.
-    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": { "moby": false }
   },
 
   "forwardPorts": [5173, "ehrbase:8080"],
@@ -19,15 +19,16 @@
     "ehrbase:8080": { "label": "EHRbase API", "onAutoForward": "silent" }
   },
 
+  // The form itself is started by the "Start my workspace" task (.vscode/tasks.json),
+  // which runs automatically in a visible terminal each time the Codespace opens.
   "postCreateCommand": "npm install",
-  "postStartCommand": "nohup npm run dev > /tmp/form.log 2>&1 &",
-  "postAttachCommand": "bash .devcontainer/wait-for-ehrbase.sh",
 
   "customizations": {
     "codespaces": { "openFiles": ["START-HERE.md"] },
     "vscode": {
       "extensions": ["esbenp.prettier-vscode", "humao.rest-client"],
       "settings": {
+        "task.allowAutomaticTasks": "on",
         "files.autoSave": "afterDelay",
         "git.enableSmartCommit": true,
         "git.postCommitCommand": "push"
