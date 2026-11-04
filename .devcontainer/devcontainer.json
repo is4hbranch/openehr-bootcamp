@@ -1,0 +1,37 @@
+{
+  "name": "openEHR Bootcamp",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "workspace",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "shutdownAction": "stopCompose",
+
+  // 4 cores / 16 GB is comfortable. 2 cores / 8 GB works but EHRbase starts slowly.
+  "hostRequirements": { "cpus": 4 },
+
+  "features": {
+    // Lets the "Reset EHRbase" task restart the database from inside the editor.
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+  },
+
+  "forwardPorts": [5173, "ehrbase:8080"],
+  "portsAttributes": {
+    "5173": { "label": "My form", "onAutoForward": "openPreview" },
+    "ehrbase:8080": { "label": "EHRbase API", "onAutoForward": "silent" }
+  },
+
+  "postCreateCommand": "npm install",
+  "postStartCommand": "nohup npm run dev > /tmp/form.log 2>&1 &",
+  "postAttachCommand": "bash .devcontainer/wait-for-ehrbase.sh",
+
+  "customizations": {
+    "codespaces": { "openFiles": ["START-HERE.md"] },
+    "vscode": {
+      "extensions": ["esbenp.prettier-vscode", "humao.rest-client"],
+      "settings": {
+        "files.autoSave": "afterDelay",
+        "git.enableSmartCommit": true,
+        "git.postCommitCommand": "push"
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Save my work",
+      "type": "shell",
+      "command": "git add -A && (git commit -m \"Work saved $(date '+%Y-%m-%d %H:%M')\" || true) && git push",
+      "problemMatcher": []
+    },
+    {
+      "label": "Restart my form",
+      "type": "shell",
+      "command": "pkill -f vite || true; nohup npm run dev > /tmp/form.log 2>&1 & sleep 3; tail -n 5 /tmp/form.log",
+      "problemMatcher": []
+    },
+    {
+      "label": "Restart EHRbase",
+      "type": "shell",
+      "command": "docker restart $(docker ps -q --filter name=ehrbase-) && bash .devcontainer/wait-for-ehrbase.sh",
+      "problemMatcher": []
+    },
+    {
+      "label": "Reset EHRbase data (deletes templates, EHRs, compositions)",
+      "type": "shell",
+      "command": "P=$(docker ps --filter name=ehrbase- --format '{{.Label \"com.docker.compose.project\"}}' | head -1) && docker compose -p \"$P\" -f .devcontainer/docker-compose.yml rm -sf ehrbase postgres && docker volume rm \"${P}_db_data\" && docker compose -p \"$P\" -f .devcontainer/docker-compose.yml up -d ehrbase postgres && bash .devcontainer/wait-for-ehrbase.sh",
+      "problemMatcher": []
+    }
+  ]
+}
