@@ -13,10 +13,11 @@
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": { "moby": false }
   },
 
-  "forwardPorts": [5173, "ehrbase:8080"],
+  // Only the form is forwarded. EHRbase is reached through the form's /ehrbase proxy
+  // (browser, Swagger) or directly at http://ehrbase:8080 from api.http.
+  "forwardPorts": [5173],
   "portsAttributes": {
-    "5173": { "label": "My form", "onAutoForward": "openPreview" },
-    "ehrbase:8080": { "label": "EHRbase API", "onAutoForward": "silent" }
+    "5173": { "label": "My form", "onAutoForward": "openPreview" }
   },
 
   // The form itself is started by the "Start my workspace" task (.vscode/tasks.json),
@@ -24,7 +25,7 @@
   "postCreateCommand": "npm install",
 
   "customizations": {
-    "codespaces": { "openFiles": ["START-HERE.md"] },
+    "codespaces": { "openFiles": ["START-HERE.md", "api.http"] },
     "vscode": {
       "extensions": ["esbenp.prettier-vscode", "humao.rest-client"],
       "settings": {

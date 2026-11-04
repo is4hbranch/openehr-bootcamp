@@ -16,9 +16,17 @@ Everything here is yours alone: your own EHRbase server, database and form.
 
 ## Uploading a template / testing the API
 
-- In the **Ports** tab, hover **EHRbase API** and click the globe icon. Add
-  `/ehrbase/swagger-ui/index.html` to the end of the address to get the API explorer.
-- Upload templates under **Template → POST /definition/template/adl1.4**.
+**Easiest: `api.http`** (opens next to this page)
+
+1. Put your `.opt` template file in the `templates` folder.
+2. In `api.http`, change `my-template.opt` in request 3 to your file's name.
+3. Click **Send Request** above request 3. The result appears on the right.
+
+The other requests in that file list templates, create an EHR and run an AQL query.
+
+**API explorer (Swagger) in the browser**
+
+Open your form, then add `/ehrbase/swagger-ui/index.html` to the end of its address.
 
 ## Saving your work — do this before you finish each day
 

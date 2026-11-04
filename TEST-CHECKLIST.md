@@ -27,8 +27,9 @@ over your shoulder (or doing it themselves). Record times and anything that conf
 | Edit text in `index.html` → preview updates without refresh | | |
 | "Check EHRbase" button says Connected | | |
 | "Create EHR" returns an EHR id | | |
-| Open EHRbase API port → Swagger loads at `/ehrbase/swagger-ui/index.html` | | |
-| Upload a test template in Swagger → appears under "List templates" | | |
+| api.http → Send Request on request 1 returns status | | |
+| Form address + `/ehrbase/swagger-ui/index.html` → Swagger loads | | |
+| Upload a test template with api.http request 3 → appears under "List templates" | | |
 | Run Task → Save my work → commit appears on GitHub | | |
 | Close tab, wait 30+ min, reopen from github.com/codespaces → work still there | | |
 | Run Task → Reset EHRbase data → templates list empty | | |

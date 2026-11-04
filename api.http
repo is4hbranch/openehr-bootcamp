@@ -1,0 +1,38 @@
+# EHRbase requests - click "Send Request" above any request to run it.
+# The response opens on the right. Runs inside your Codespace, so no ports or logins needed.
+
+@base = http://ehrbase:8080/ehrbase/rest/openehr/v1
+
+### 1. Is EHRbase up?
+GET http://ehrbase:8080/ehrbase/rest/status
+
+### 2. List uploaded templates
+GET {{base}}/definition/template/adl1.4
+Accept: application/json
+
+### 3. Upload a template
+# Put your .opt file in the "templates" folder and change the file name below.
+POST {{base}}/definition/template/adl1.4
+Content-Type: application/xml
+Accept: application/json
+
+< ./templates/my-template.opt
+
+### 4. Get the example composition for a template (shows the data your form must send)
+# Replace the template ID with yours (see request 2).
+GET {{base}}/definition/template/adl1.4/my.template.v1/example?format=FLAT
+Accept: application/json
+
+### 5. Create an EHR
+POST {{base}}/ehr
+Accept: application/json
+Prefer: return=representation
+
+### 6. Query with AQL
+POST {{base}}/query/aql
+Content-Type: application/json
+Accept: application/json
+
+{
+  "q": "SELECT e/ehr_id/value AS ehr_id FROM EHR e"
+}
